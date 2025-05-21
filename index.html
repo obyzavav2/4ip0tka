@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4ip0tka Shark Den</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Condensed:wght@400;700&display=swap');
+        
+        :root {
+            --deep-blue: #0a1a2a;
+            --ocean-blue: #1a3a5a;
+            --shark-accent: #ff3a3a;
+            --bubble: rgba(173, 216, 230, 0.7);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: var(--deep-blue);
+            color: white;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--bubble) 2%, transparent 5%),
+                radial-gradient(circle at 90% 30%, var(--bubble) 1%, transparent 4%),
+                radial-gradient(circle at 50% 80%, var(--bubble) 3%, transparent 6%);
+            background-size: 200% 200%;
+            animation: bubbles 15s infinite linear;
+        }
+        
+        @keyframes bubbles {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .logo {
+            font-family: 'Bangers', cursive;
+            font-size: 5rem;
+            color: var(--shark-accent);
+            text-shadow: 5px 5px 0 #000, 
+                         -1px -1px 0 #000,  
+                          1px -1px 0 #000,
+                          -1px 1px 0 #000,
+                           1px 1px 0 #000;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 10;
+            transform: rotate(-5deg);
+            animation: logoPulse 2s infinite alternate;
+        }
+        
+        @keyframes logoPulse {
+            from { transform: rotate(-5deg) scale(1); }
+            to { transform: rotate(-5deg) scale(1.05); }
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .shark {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><path d="M20,50 Q40,30 60,50 Q80,70 100,50 Q120,30 140,50 Q160,70 180,50 L200,50 L180,70 Q160,90 140,70 Q120,50 100,70 Q80,90 60,70 Q40,50 20,70 Z" fill="%23ff3a3a"/><circle cx="160" cy="40" r="5" fill="%23000"/><path d="M30,50 Q40,40 50,50 Q40,60 30,50 Z" fill="%23fff"/></svg>');
+            background-repeat: no-repeat;
+            z-index: 5;
+            transition: transform 0.3s ease;
+            pointer-events: none;
+            filter: drop-shadow(0 0 5px rgba(255, 58, 58, 0.7));
+        }
+        
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--shark-accent);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background-color: rgba(10, 26, 42, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav a:hover {
+            background-color: var(--shark-accent);
+            transform: translateY(-3px);
+        }
+        
+        .nav a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .nav a:hover::after {
+            opacity: 1;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background-color: rgba(26, 58, 90, 0.3);
+            border-radius: 15px;
+            border: 1px solid var(--shark-accent);
+            box-shadow: 0 0 15px rgba(255, 58, 58, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--shark-accent), transparent);
+            animation: sectionGlow 3s infinite;
+        }
+        
+        @keyframes sectionGlow {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        h2 {
+            font-family: 'Bangers', cursive;
+            color: var(--shark-accent);
+            font-size: 2.5rem;
+            margin-top: 0;
+            border-bottom: 2px dashed var(--shark-accent);
+            padding-bottom: 0.5rem;
+            text-shadow: 2px 2px 0 #000;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--shark-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--shark-accent);
+        }
+        
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover::after {
+            opacity: 1;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .game-card {
+            background-color: rgba(10, 26, 42, 0.7);
+            border: 1px solid var(--shark-accent);
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 60%, rgba(255, 58, 58, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 58, 58, 0.5);
+        }
+        
+        .game-card:hover::before {
+            opacity: 1;
+        }
+        
+        .game-card h3 {
+            margin-top: 0;
+            color: var(--shark-accent);
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23ff3a3a"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23ff3a3a"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23ff3a3a"></path></svg>');
+            background-size: cover;
+            z-index: 1;
+        }
+        
+        .birthday-countdown {
+            background-color: rgba(255, 58, 58, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+            border: 1px dashed var(--shark-accent);
+        }
+        
+        .countdown-timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--shark-accent);
+            margin-top: 0.5rem;
+        }
+        
+        .fish {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><path d="M0,10 Q10,0 20,10 Q10,20 0,10 Z" fill="%2366ccff"/><circle cx="25" cy="10" r="2" fill="%23000"/></svg>');
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        .donate-fish {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--shark-accent);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 0 10px rgba(255, 58, 58, 0.7);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .donate-fish:hover {
+            animation: none;
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="shark" id="shark"></div>
+        <h1 class="logo">4ip0tka</h1>
+        <p class="tagline">Акула керамики и игровых стримов</p>
+        
+        <div class="nav">
+            <a href="#about">Обо мне</a>
+            <a href="#gallery">Галерея</a>
+            <a href="#streams">Стримы</a>
+            <a href="#games">Игры</a>
+            <a href="#support">Поддержка</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://t.me/Cheep0tka" target="_blank">Telegram</a>
+            <a href="https://www.instagram.com/zwerechek" target="_blank">Instagram</a>
+            <a href="https://discord.com/invite/3cyXnrmbz4" target="_blank">Discord</a>
+        </div>
+        
+        <div class="wave"></div>
+    </div>
+    
+    <div class="content">
+        <section id="about" class="section">
+            <h2>Обо мне</h2>
+            <p>Привет! Я Анечка, мне 21 и я художник-керамист (ДР 28.12.2003).</p>
+            <p>Люблю создавать красивые вещи из глины и проходить игры на стримах. Моя страсть — это керамика с морскими мотивами, особенно акулы!</p>
+            <p>На этом сайте вы найдёте мои работы, расписание стримов и список игр, которые я мечтаю пройти.</p>
+            
+            <div class="birthday-countdown">
+                <p>До моего дня рождения осталось:</p>
+                <div class="countdown-timer" id="countdown"></div>
+            </div>
+        </section>
+        
+        <section id="gallery" class="section">
+            <h2>Галерея работ</h2>
+            <p>Мои керамические шедевры с морской тематикой:</p>
+            <div class="games-grid">
+                <div class="game-card">
+                    <h3>Акула-ваза</h3>
+                    <p>Глазурованная керамика</p>
+                </div>
+                <div class="game-card">
+                    <h3>Кубок "Плавник"</h3>
+                    <p>Ручная роспись</p>
+                </div>
+                <div class="game-card">
+                    <h3>Подводный мир</h3>
+                    <p>Серия миниатюр</p>
+                </div>
+                <div class="game-card">
+                    <h3>Скоро ещё!</h3>
+                    <p>Новые работы в процессе</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="streams" class="section">
+            <h2>Стримы</h2>
+            <p>Я стримлю игры на Twitch/YouTube. Вот моё расписание:</p>
+            <ul>
+                <li>Понедельник: 19:00 - Керамика + обсуждение игр</li>
+                <li>Среда: 20:00 - Игровой стрим</li>
+                <li>Пятница: 18:00 - Прохождение новых игр</li>
+            </ul>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        
+        <section id="games" class="section">
+            <h2>Игры для стримов</h2>
+            <p>Подарите мне любую игру из списка — и я обязательно пройду её на стриме!</p>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <h3>Stardew Valley</h3>
+                    <p>Уютная ферма</p>
+                </div>
+                <div class="game-card">
+                    <h3>Hogwarts Legacy</h3>
+                    <p>Мир Гарри Поттера</p>
+                </div>
+                <div class="game-card">
+                    <h3>The Witcher 3</h3>
+                    <p>Эпичное RPG</p>
+                </div>
+                <div class="game-card">
+                    <h3>Subnautica</h3>
+                    <p>Подводный хоррор</p>
+                </div>
+                <div class="game-card">
+                    <h3>It Takes Two</h3>
+                    <p>Кооператив</p>
+                </div>
+                <div class="game-card">
+                    <h3>Другая игра</h3>
+                    <p>Любая на ваш выбор!</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="support" class="section">
+            <h2>Поддержать</h2>
+            <p>Хотите помочь в развитии канала? Вот способы:</p>
+            <div class="social-links">
+                <a href="https://www.donationalerts.com/r/warrr1s" target="_blank">DonationAlerts</a>
+                <a href="#" target="_blank">Steam Wishlist</a>
+            </div>
+            <p>Ваша поддержка мотивирует меня создавать больше контента!</p>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <h3>Мой PC:</h3>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li>AMD Ryzen 5 5600 OEM</li>
+                    <li>MSI GeForce RTX 4060</li>
+                    <li>16GB RAM</li>
+                    <li>500GB SSD</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+    <div class="donate-fish" id="donateBtn">Накорми акулу!</div>
+    
+    <script>
+        // Анимация акулы, следующей за курсором
+        document.addEventListener('DOMContentLoaded', function() {
+            const shark = document.getElementById('shark');
+            let mouseX = 0;
+            let mouseY = 0;
+            let sharkX = 0;
+            let sharkY = 0;
+            let speed = 0.05;
+            
+            // Случайные фразы для акулы
+            const sharkPhrases = [
+                "Дарова, акулёнок!",
+                "Хочешь поиграть?",
+                "28.12 — день акулы!",
+                "Подари игру! 🦈",
+                "Чипотка рулит!",
+                "Я кусаюсь!",
+                "Где мои игры?",
+                "Стрим скоро!"
+            ];
+            
+            // Следим за курсором
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            
+            // Анимация
+            function animate() {
+                // Плавное движение акулы к курсору
+                sharkX += (mouseX - sharkX - 100) * speed;
+                sharkY += (mouseY - sharkY - 50) * speed;
+                
+                // Поворот акулы в направлении движения
+                const angle = Math.atan2(mouseY - sharkY, mouseX - sharkX) * 180 / Math.PI;
+                
+                shark.style.left = sharkX + 'px';
+                shark.style.top = sharkY + 'px';
+                shark.style.transform = `rotate(${angle}deg)`;
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Клик по акуле — случайная фраза
+            shark.addEventListener('click', function() {
+                const phrase = sharkPhrases[Math.floor(Math.random() * sharkPhrases.length)];
+                
+                // Создаем всплывающее сообщение
+                const bubble = document.createElement('div');
+                bubble.textContent = phrase;
+                bubble.style.position = 'fixed';
+                bubble.style.left = sharkX + 'px';
+                bubble.style.top = (sharkY - 50) + 'px';
+                bubble.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                bubble.style.color = 'black';
+                bubble.style.padding = '10px';
+                bubble.style.borderRadius = '20px';
+                bubble.style.zIndex = '100';
+                bubble.style.maxWidth = '200px';
+                bubble.style.textAlign = 'center';
+                bubble.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+                bubble.style.animation = 'fadeOut 2s forwards 2s';
+                
+                document.body.appendChild(bubble);
+                
+                // Удаляем через 3 секунды
+                setTimeout(() => {
+                    document.body.removeChild(bubble);
+                }, 3000);
+            });
+            
+            animate();
+            
+            // Анимация волн
+            const wave = document.querySelector('.wave');
+            let waveOffset = 0;
+            
+            function waveAnimation() {
+                waveOffset += 0.5;
+                wave.style.backgroundPositionX = waveOffset + 'px';
+                requestAnimationFrame(waveAnimation);
+            }
+            
+            waveAnimation();
+            
+            // Таймер до дня рождения
+            function updateCountdown() {
+                const now = new Date();
+                const currentYear = now.getFullYear();
+                const birthday = new Date(currentYear, 11, 28); // 28 декабря
+                
+                // Если день рождения уже прошел в этом году, берем следующий год
+                if (now > birthday) {
+                    birthday.setFullYear(currentYear + 1);
+                }
+                
+                const diff = birthday - now;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown').innerHTML = `
+                    ${days} дней ${hours} часов ${minutes} минут ${seconds} секунд
+                `;
+            }
+            
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+            
+            // Мини-игра "Накорми акулу"
+            const donateBtn = document.getElementById('donateBtn');
+            let fishes = [];
+            
+            donateBtn.addEventListener('click', function() {
+                // Создаем рыбку
+                const fish = document.createElement('div');
+                fish.className = 'fish';
+                fish.style.left = (window.innerWidth - 50) + 'px';
+                fish.style.top = (window.innerHeight - 100) + 'px';
+                document.body.appendChild(fish);
+                
+                // Задаем случайную траекторию к акуле
+                const targetX = sharkX + Math.random() * 100 - 50;
+                const targetY = sharkY + Math.random() * 50 - 25;
+                
+                const fishObj = {
+                    element: fish,
+                    x: window.innerWidth - 50,
+                    y: window.innerHeight - 100,
+                    speed: 2 + Math.random() * 3,
+                    targetX: targetX,
+                    targetY: targetY,
+                    eaten: false
+                };
+                
+                fishes.push(fishObj);
+                
+                // Открываем ссылку на донаты после 3 кликов
+                if (fishes.length % 3 === 0) {
+                    window.open('https://www.donationalerts.com/r/warrr1s', '_blank');
+                }
+            });
+            
+            // Анимация рыбок
+            function animateFishes() {
+                fishes.forEach((fish, index) => {
+                    if (fish.eaten) return;
+                    
+                    // Движение к цели
+                    const dx = fish.targetX - fish.x;
+                    const dy = fish.targetY - fish.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 5) {
+                        // Рыбка "съедена"
+                        fish.element.style.transform = 'scale(0)';
+                        fish.element.style.opacity = '0';
+                        fish.element.style.transition = 'all 0.3s';
+                        fish.eaten = true;
+                        
+                        // Удаляем через 0.3 секунды
+                        setTimeout(() => {
+                            document.body.removeChild(fish.element);
+                            fishes.splice(index, 1);
+                        }, 300);
+                    } else {
+                        fish.x += (dx / distance) * fish.speed;
+                        fish.y += (dy / distance) * fish.speed;
+                        
+                        fish.element.style.left = fish.x + 'px';
+                        fish.element.style.top = fish.y + 'px';
+                        
+                        // Поворот рыбки
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        fish.element.style.transform = `rotate(${angle}deg)`;
+                    }
+                });
+                
+                requestAnimationFrame(animateFishes);
+            }
+            
+            animateFishes();
+            
+            // Добавляем стиль для анимации исчезновения
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeOut {
+                    from { opacity: 1; transform: translateY(0); }
+                    to { opacity: 0; transform: translateY(-20px); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
